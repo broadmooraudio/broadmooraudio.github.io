@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title>Conact | Broadmoor Studio</title>
+        <link rel="shortcut icon" type="img/x-ico" href="../images/favicon.ico">
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <!-- MY CSS -->
+        <link rel="stylesheet" href="../styles/style.css">
+    </head>
+
+    <body>
+        <div>
+            <header>
+                <div class="navbar">
+                    <ul>
+                        <li><a href="../index.html">Broadmoor Studio</a></li>
+                        <li><a href="../pages/about.html">About</a></li>
+                        <li><a href="../pages/music.html">Music</a></li>
+                        <li id="right_nav"><a href="../pages/contact.html">Contact</a></li>
+                    </ul>
+                </div>
+            </header>
+            <hr>
+        </div>
+
+        <div>
+            <form action="#">
+                <input type="text" class="firstlastform" name="firstname" placeholder="First"/>
+                <input type="text" class="firstlastform" name="lastname" placeholder="Last"/> <br>
+                <input type="text" class="emailform" name="email" placeholder="Email"/> <br>
+                    <!-- Major Checkbox -->
+                <input type="checkbox" id="major" name="major" unchecked>
+                <label for="major" class="subtext">Major</label>
+                    <!-- Independent Checkbox -->
+                <input type="checkbox" id="independent" name="independent" unchecked>
+                <label for="independent" class="subtext">Independent</label> <br>
+                    <!-- Description Textarea -->
+                <textarea name="description" placeholder="Mix, Master, Ep, Album, Genre, # of Tracks, Specific Effects... Etc."></textarea> <br>
+            
+                    <!-- Submit Button -->
+                <input type="submit" name="submit" value="Submit">
+            </form>
+        </div>
+    </body>
+</html>
