@@ -4,7 +4,7 @@ body {
 }
 
 header {
-    position: sticky;
+    position: relative;
     position: -webkit-sticky;
     top: 0;
     width: 100%;
@@ -17,7 +17,7 @@ header {
 }
 
 .the-tools {
-    position: relative;
+    position: top;
     top: 0;
     width: 100%;
     height: auto;
