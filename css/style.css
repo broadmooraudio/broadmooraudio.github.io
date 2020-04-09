@@ -1,76 +1,72 @@
+.navbar {
+    overflow: hidden;
+    background-color: rgba(29, 29, 29, 0.9);
+    position: fixed;
+    top: 0;
+    width: 100%;
+    max-height: 16%;
+}
+
+.nav-logo {
+    overflow: hidden;
+    float: left;
+    width: 50px;
+    max-width: 50px;
+    height: auto;
+    padding: 10px 10px;
+}
+
+.nav-logo-text {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    padding: 9.5px 10px;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.nav-anchor-right {
+    float: right;
+    display: block;
+    color: #f2f2f2;
+    padding: 25px 18px;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.navbar .nav-anchor {
+    float: left;
+    display: block;
+    color: #f2f2f2;
+    text-align: center;
+    padding: 25px 18px;
+    text-decoration: none;
+    font-family: sans-serif;
+    font-weight: bold;
+}
+
+.navbar a:hover {
+    background: rgb(61, 61, 61);
+    color: rgb(255, 255, 255);
+}
+
 body {
     background-color: #cccccc;
     margin: 0 auto;
 }
 
-header {
-    position: relative;
-    position: -webkit-sticky;
-    top: 0;
-    width: 100%;
-    background-color: rgba(239, 239, 239, 0.8);
-    z-index: 10;
-}
-
-#contact_right {
-    float: right;
-}
-
 .the-tools {
-    position: top;
     top: 0;
     width: 100%;
     height: auto;
-    z-index: 1;
 }
 
-nav {
-    display: block;
-    margin: auto;
-    padding: 10px;
+h1 {
+    font-family: sans-serif;
 }
 
-h1, p {
-    border: 1px solid black;
-    margin: 20px;
+p {
+    font-family: sans-serif;
 }
-
-
-
-
-
-
-
-/*
-body {
-    height: 100%;
-    width: 100%;
-    margin: 0 auto;
-    background-color: #cccccc;
-}
-
-
-.navbar, #footer {
-    position: fixed;
-    display: block;
-    margin: auto;
-    width: %;
-    background-color: rgba(239, 239, 239, 0.9);
-    padding: 10px;
-    z-index: 10;
-}
-
-li {
-    display: inline;
-}
-
-#right_nav {
-    float: right;
-}
-
-.the-tools {
-    width: 100%;
-    display: block;
-    margin: auto;
-}
-*/
