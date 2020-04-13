@@ -1,0 +1,97 @@
+header {
+    position: relative;
+    background-color: black;
+    height: 75vh;
+    min-height: 25rem;
+    width: 100%;
+    overflow: hidden;
+}
+
+nav {
+    overflow: hidden;
+    float: left;
+    top: 0;
+    width: 100%;
+    background-color: rgba(0 , 0, 0, 0.7);
+    z-index: 10;
+}
+
+header video {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    min-width: 100%;
+    min-height: 100%;
+    width: auto;
+    height: auto;
+    z-index: 0;
+    -ms-transform: translateX(-50%) translateY(-50%);
+    -moz-transform: translateX(-50%) translateY(-50%);
+    -webkit-transform: translateX(-50%) translateY(-50%);
+    transform: translateX(-50%) translateY(-50%);
+}
+
+header .container {
+    position: relative;
+    z-index: 2;
+}
+
+header .overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    height: 100%;
+    width: 100%;
+    background-color: black;
+    opacity: 0.5;
+    z-index: 1;
+}
+
+.contact-left {
+    float: left;
+}
+
+.contact-right {
+    float: right;
+}
+
+@media (pointer: coarse) and (hover: none) {
+    header {
+        background: url('video/background video 1.mp4') black no-repeat center center scroll;
+    }
+    header video {
+        display: none;
+    }
+}
+
+body {
+    background-color: rgb(36, 36, 36);
+}
+
+.the-tools {
+    width: 100%;
+    height: auto;
+    padding: 10vh;
+}
+
+.newsletter {
+    color: white;
+}
+
+.newslettersub {
+    color: rgb(151, 151, 151);
+}
+
+.footer {
+    position: relative;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0 , 0, 0, 0.7);
+    padding: 7vh;
+    width: 100%;
+}
+
+.footer-content {
+    position: absolute;
+    bottom: 0;
+}
