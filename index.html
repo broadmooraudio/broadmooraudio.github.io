@@ -1,33 +1,37 @@
 <!DOCTYPE html>
-<html lang="en" dir="ltr">
+<!--[if lt IE 7]>      <html class="no-js lt-ie9 lt-ie8 lt-ie7"> <![endif]-->
+<!--[if IE 7]>         <html class="no-js lt-ie9 lt-ie8"> <![endif]-->
+<!--[if IE 8]>         <html class="no-js lt-ie9"> <![endif]-->
+<!--[if gt IE 8]>      <html class="no-js"> <!--<![endif]-->
+<html>
     <head>
-        <meta charset="UTF-8">
-        <title>Home | Broadmoor Studio</title>
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        
+        <meta charset="utf-8">
+        <meta http-equiv="X-UA-Compatible" content="IE=edge">
+        <title></title>
+        <meta name="description" content="">
+        <meta name="viewport" content="width=device-width, initial-scale=1">
+        <link rel="stylesheet" href="css/normalize.css">
         <link rel="stylesheet" href="css/style.css">
-        <script src="https://kit.fontawesome.com/a076d05399.js"></script>
-        <script type="text/javascript" src="http://livejs.com/live.js"></script>
+
+        <style>
+            body {
+                background-image: url("/img/the-tools-dont-loop.jpg");
+            }
+        </style>
     </head>
-
-    <header>
-        <nav>
-            <input type="checkbox" id="check">
-            <label for="check" class="checkbtn">
-                <i class="fas fa-bars"></i>
-            </label>
-
-
-                <a href="index.html"><label class="logo">Broadmoor Studio</label></a>
-            <ul>
-                <li><a class="active" href="pages/about.html">About</a></li>
-                <li><a class="active" href="pages/music.html">Music</a></li>
-                <li><a class="active" href="pages/contact.html">Contact</a></li>
-            </ul>
-        </nav>
-    </header>
-
     <body>
-        <img class="bgimg" src="img/the-tools-dont-loop.jpg">
+        <!--[if lt IE 7]>
+            <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
+        <![endif]-->
+            
+            <div id="hero">
+                <video loop muted autoplay preload="auto">
+                    <source src="video/2021-01-11 23-52-38.mp4" type="video/mp4">
+                        Your browser does not support the video tag.
+                </video>
+            </div>
+        
+        
+        <script src="js/app.js" async defer></script>
     </body>
 </html>
