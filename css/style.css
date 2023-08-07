@@ -27,3 +27,14 @@
   color: #f1f1f1;
   padding: 20px;
 }
+
+#email {
+    color: rgba(0, 0, 0);
+}
+
+.emailform {
+    top: 2%;
+    bottom: 2%;
+    right: 15%;
+    left: 15%;
+}
