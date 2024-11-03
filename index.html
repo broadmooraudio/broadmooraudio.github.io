@@ -7,7 +7,69 @@
     <meta name="keywords" content="Broadmoor Studio, art, design, studio">
     <meta name="author" content="Broadmoor Studio">
     <title>Broadmoor Studio</title>
-    <link rel="stylesheet" href="style.css">
+    <style>
+        body {
+            margin: 0;
+            padding: 0;
+            background: #1a1a1a;
+            color: white;
+            font-family: Arial, sans-serif;
+            cursor: none;
+            overflow: hidden;
+        }
+
+        nav {
+            padding: 1rem;
+            background: rgba(0, 0, 0, 0.8);
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .nav-links {
+            display: flex;
+            list-style: none;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        .nav-links a {
+            color: white;
+            text-decoration: none;
+            font-size: 1.1rem;
+        }
+
+        main {
+            text-align: center;
+            padding-top: 4rem;
+        }
+
+        h1 {
+            font-size: 3rem;
+            margin: 0;
+        }
+
+        h2 {
+            font-size: 1.5rem;
+            opacity: 0.8;
+        }
+
+        .trail-dot {
+            width: 10px;
+            height: 10px;
+            background: #fff;
+            border-radius: 50%;
+            position: fixed;
+            pointer-events: none;
+            transition: all 0.1s ease;
+        }
+    </style>
 </head>
 <body>
     <nav>
@@ -28,5 +90,34 @@
         <h2>Est. 2019</h2>
         <p>Test</p>
     </main>
+
+    <script>
+        const numDots = 25; // Number of dots in the trail
+        const dots = [];
+        const positions = [];
+
+        // Create trail dots
+        for (let i = 0; i < numDots; i++) {
+            const dot = document.createElement('div');
+            dot.className = 'trail-dot';
+            document.body.appendChild(dot);
+            dots.push(dot);
+            positions.push({ x: 0, y: 0 });
+        }
+
+        // Update dot positions on mouse move
+        document.addEventListener('mousemove', (e) => {
+            positions.unshift({ x: e.clientX, y: e.clientY });
+            positions.pop();
+
+            dots.forEach((dot, index) => {
+                const pos = positions[index];
+                dot.style.left = pos.x - 5 + 'px';
+                dot.style.top = pos.y - 5 + 'px';
+                dot.style.opacity = 1 - (index / numDots);
+                dot.style.transform = `scale(${1 - (index / numDots)})`;
+            });
+        });
+    </script>
 </body>
 </html>
