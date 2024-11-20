@@ -3,121 +3,235 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <meta name="description" content="Broadmoor Studio - Established 2019">
-    <meta name="keywords" content="Broadmoor Studio, art, design, studio">
-    <meta name="author" content="Broadmoor Studio">
     <title>Broadmoor Studio</title>
     <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
         body {
-            margin: 0;
-            padding: 0;
-            background: #1a1a1a;
-            color: white;
             font-family: Arial, sans-serif;
-            cursor: none;
-            overflow: hidden;
+            overflow-x: hidden;
+            background: #000;
         }
 
-        nav {
-            padding: 1rem;
-            background: rgba(0, 0, 0, 0.8);
+        canvas {
+            position: fixed;
+            top: 0;
+            left: 0;
+            z-index: -1;
         }
 
-        .nav-container {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            max-width: 1200px;
-            margin: 0 auto;
+        .content {
+            position: relative;
+            height: 400vh;
         }
 
-        .nav-links {
-            display: flex;
-            list-style: none;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
-        }
-
-        .nav-links a {
+        .panel-content {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
             color: white;
-            text-decoration: none;
-            font-size: 1.1rem;
+            text-align: center;
+            pointer-events: none;
+            opacity: 0;
+            transition: opacity 0.5s;
+            text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+            width: 100%;
+            max-width: 800px;
+            padding: 2rem;
         }
 
-        main {
-            text-align: center;
-            padding-top: 4rem;
+        .panel-content.active {
+            opacity: 1;
         }
 
         h1 {
-            font-size: 3rem;
-            margin: 0;
+            font-size: 4rem;
+            margin-bottom: 1rem;
         }
 
-        h2 {
+        p {
             font-size: 1.5rem;
-            opacity: 0.8;
         }
 
-        .trail-dot {
-            width: 10px;
-            height: 10px;
-            background: #fff;
-            border-radius: 50%;
-            position: fixed;
-            pointer-events: none;
-            transition: all 0.1s ease;
+        .project-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .project-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(10px);
+            padding: 1.5rem;
+            border-radius: 10px;
         }
     </style>
 </head>
 <body>
-    <nav>
-        <div class="nav-container">
-            <a href="index.html" class="logo">
-                <div class="logo-icon"></div>
-            </a>
-            <ul class="nav-links">
-                <li><a href="games.html">Games</a></li>
-                <li><a href="photos.html">Photos</a></li>
-                <li><a href="videos.html">Videos</a></li>
-                <li><a href="music.html">Music</a></li>
-            </ul>
+    <div class="content">
+        <div class="panel-content active" data-panel="0">
+            <h1>Broadmoor Studio</h1>
+            <p>Audio Production & Sound Design</p>
         </div>
-    </nav>
-    <main>
-        <h1>BROADMOOR STUDIO</h1>
-        <h2>Est. 2019</h2>
-        <p>Test</p>
-    </main>
 
+        <div class="panel-content" data-panel="1">
+            <h2>About Us</h2>
+            <p>We create...</p>
+        </div>
+
+        <div class="panel-content" data-panel="2">
+            <h2>Projects</h2>
+            <div class="project-grid">
+                <div class="project-card">
+                    <h3>Music</h3>
+                    <p>Professional...</p>
+                </div>
+                <div class="project-card">
+                    <h3>Sound</h3>
+                    <p>Custom...</p>
+                </div>
+                <div class="project-card">
+                    <h3>Post</h3>
+                    <p>Audio...</p>
+                </div>
+            </div>
+        </div>
+
+        <div class="panel-content" data-panel="3">
+            <h2>Contact</h2>
+            <p>Get in touch: broadmooraudio@gmail.com</p>
+        </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
     <script>
-        const numDots = 25; // Number of dots in the trail
-        const dots = [];
-        const positions = [];
+        // Three.js setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer({ antialias: true });
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-        // Create trail dots
-        for (let i = 0; i < numDots; i++) {
-            const dot = document.createElement('div');
-            dot.className = 'trail-dot';
-            document.body.appendChild(dot);
-            dots.push(dot);
-            positions.push({ x: 0, y: 0 });
+        // Create particles
+        const particlesGeometry = new THREE.BufferGeometry();
+        const particlesCount = 5000;
+        const posArray = new Float32Array(particlesCount * 3);
+
+        for(let i = 0; i < particlesCount * 3; i++) {
+            posArray[i] = (Math.random() - 0.5) * 10;
         }
 
-        // Update dot positions on mouse move
-        document.addEventListener('mousemove', (e) => {
-            positions.unshift({ x: e.clientX, y: e.clientY });
-            positions.pop();
+        particlesGeometry.setAttribute('position', new THREE.BufferAttribute(posArray, 3));
 
-            dots.forEach((dot, index) => {
-                const pos = positions[index];
-                dot.style.left = pos.x - 5 + 'px';
-                dot.style.top = pos.y - 5 + 'px';
-                dot.style.opacity = 1 - (index / numDots);
-                dot.style.transform = `scale(${1 - (index / numDots)})`;
+        const particlesMaterial = new THREE.PointsMaterial({
+            size: 0.005,
+            color: 0x6666ff
+        });
+
+        const particlesMesh = new THREE.Points(particlesGeometry, particlesMaterial);
+        scene.add(particlesMesh);
+
+        // Create panels
+        const panels = [];
+        const panelGeometry = new THREE.PlaneGeometry(2, 1.2);
+        const panelMaterial = new THREE.MeshBasicMaterial({
+            color: 0x000000,
+            transparent: true,
+            opacity: 0.3,
+            side: THREE.DoubleSide
+        });
+
+        // Create 4 panels at different positions in space
+        const panelPositions = [
+            new THREE.Vector3(0, 0, -2),
+            new THREE.Vector3(3, 2, -1),
+            new THREE.Vector3(-2, -1, 1),
+            new THREE.Vector3(1, -2, 2)
+        ];
+
+        panelPositions.forEach((position, index) => {
+            const panel = new THREE.Mesh(panelGeometry, panelMaterial.clone());
+            panel.position.copy(position);
+            panels.push(panel);
+            scene.add(panel);
+        });
+
+        // Add ambient light
+        const ambientLight = new THREE.AmbientLight(0xffffff, 0.5);
+        scene.add(ambientLight);
+
+        // Set initial camera position to look at first panel
+        camera.position.set(0, 0, 1); // Position camera in front of first panel
+        camera.lookAt(panels[0].position);
+
+        // Mouse movement effect
+        let mouseX = 0;
+        let mouseY = 0;
+
+        document.addEventListener('mousemove', (event) => {
+            mouseX = (event.clientX / window.innerWidth - 0.5) * 0.1;
+            mouseY = (event.clientY / window.innerHeight - 0.5) * 0.1;
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', () => {
+            camera.aspect = window.innerWidth / window.innerHeight;
+            camera.updateProjectionMatrix();
+            renderer.setSize(window.innerWidth, window.innerHeight);
+        });
+
+        // Scroll handling
+        let currentPanel = 0;
+        const totalPanels = panels.length;
+        let scrollProgress = 0;
+
+        window.addEventListener('scroll', () => {
+            // Calculate scroll progress and current panel
+            scrollProgress = window.scrollY / (document.documentElement.scrollHeight - window.innerHeight);
+            currentPanel = Math.min(Math.floor(scrollProgress * totalPanels), totalPanels - 1);
+            
+            // Update panel content visibility
+            document.querySelectorAll('.panel-content').forEach((panel, index) => {
+                if (index === currentPanel) {
+                    panel.classList.add('active');
+                } else {
+                    panel.classList.remove('active');
+                }
             });
         });
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+
+            // Rotate particles
+            particlesMesh.rotation.y += 0.0005;
+
+            // Only proceed if we have a valid panel
+            if (panels[currentPanel]) {
+                // Calculate target camera position based on current panel
+                const targetPosition = new THREE.Vector3().copy(panels[currentPanel].position);
+                targetPosition.z += 3; // Camera distance from panel
+
+                // Smooth camera movement
+                camera.position.lerp(targetPosition, 0.05);
+                camera.lookAt(panels[currentPanel].position);
+
+                // Add subtle mouse movement
+                camera.position.x += mouseX;
+                camera.position.y += mouseY;
+            }
+
+            renderer.render(scene, camera);
+        }
+
+        animate();
     </script>
 </body>
 </html>
